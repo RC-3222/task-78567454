@@ -24,15 +24,9 @@ function operationsSwitch(calculator) {
 
   const NeededCommand = commands[calculator.currentOperator]
 
-  if (NeededCommand) calculator.command = new NeededCommand()
-  else return
+  if (!NeededCommand) return
 
-  if (calculator.equalCounter === 0) {
-    calculator.valueBeforeOperation.push(output.value)
-  } else {
-    calculator.valueBeforeOperation.push(calculator.currentValue)
-  }
-  calculator.executeCommand(calculator.command)
+  new NeededCommand(calculator).execute()
   if (calculator.equalCounter === 0) {
     calculator.currentValue = outputBeforeOperation
   }
@@ -70,20 +64,17 @@ export function initOperators(calculator) {
           break
         }
         case 'clear': {
-          calculator.command = new ClearCommand(calculator)
-          calculator.executeCommand(calculator.command)
+          new ClearCommand(calculator).execute()
           calculator.equalCounter = 0
           break
         }
         case '+-': {
-          calculator.command = new SwitchSignCommand(calculator)
-          calculator.executeCommand(calculator.command)
+          new SwitchSignCommand(calculator).execute()
           calculator.equalCounter = 0
           break
         }
         case '%': {
-          calculator.command = new PercentCommand(calculator)
-          calculator.executeCommand(calculator.command)
+          new PercentCommand(calculator).execute()
         }
       }
   })

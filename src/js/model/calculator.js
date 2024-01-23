@@ -5,8 +5,7 @@ export class Calculator {
     operatorActive,
     newNumber,
     maxOutputLength,
-    equalCounter,
-    command
+    equalCounter
   ) {
     this.currentOperator = currentOperator
     this.currentValue = currentValue
@@ -18,13 +17,5 @@ export class Calculator {
     this.maxOutputLength = maxOutputLength
 
     this.equalCounter = equalCounter
-
-    this.valueBeforeOperation = []
-
-    this.command = command
-  }
-
-  executeCommand(command) {
-    command.execute(this)
   }
 }
