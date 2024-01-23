@@ -1,0 +1,96 @@
+.calculator {
+	position: relative;
+	width: min(30rem, 100%);
+	height: min(40rem, 100%);
+	margin: 0 auto;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+	border-radius: 1.25rem;
+	font-family: "Open Sans", sans-serif;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+
+    &__output {
+        position: relative;
+        height: 25%;
+        width: 100%;
+        padding: 0 1.25rem;
+        background-color: var(--input-clr);
+
+        input {
+            width: 100%;
+            height: 100%;
+            font-size: 4rem;
+            text-align: right;
+            border: none;
+            background-color: transparent;
+            color: var(--text-clr);
+            
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &__keypad {
+        position: inherit;
+    
+        background-color: var(--key-clr);
+    
+        width: 100%;
+        height: 75%;
+        
+        display: grid;
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    * {
+        transition: all 0.25s;
+    }
+
+    &__key,
+    &__key.key--operator.key--sign,
+    &__key.key--operator.key--percent {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        font-size: 1.5rem;
+        color: var(--text-clr);
+        background-color: var(--key-clr);
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--key-clr--highlight);
+        }
+    }
+
+    
+    &__key.key--operator {
+        background-color: var(--op-clr--generic);
+        color: var(--text-clr--alt);
+
+        &:hover, &:focus {
+            background-color: var(--op-clr--generic--highlight);
+        }
+    }
+
+    .key--zero {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    
+    &__key.key--equal {
+        background-color: var(--op-clr--equal);
+        color: var(--text-clr);
+    }
+
+    &__key.key--equal:hover {
+        background-color: var(--op-clr--equal--highlight);
+    }
+}
