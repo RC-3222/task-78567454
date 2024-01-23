@@ -12,7 +12,7 @@ git clone https://github.com/RC-3222/test-task-7688732.git
 ```
 ...or by any other available means.
 
-2. Open it in your code editor.
+2. Open it in your code editor (or a terminal).
 3. Run `npm install` to install all the dependencies.
 4. Start the dev server by running `npm run dev` and then you should be able to see the app in your browser at `localhost:9000`
 
