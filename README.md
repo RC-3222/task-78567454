@@ -1,19 +1,18 @@
 # Test Task
 
 ## [Task](https://drive.google.com/file/d/1BK2W8VEwzz0lg1_eyy294QCO5tpdJ8Hm/view?usp=sharing)
-
-## [Deployment](gfghfh)
+## [Deployment](https://rc-3222.github.io/built-test-task-7688732/)
 
 ## How to Use:
 
 1. Clone this repo by running the script below:
 
 ```
-***
+git clone https://github.com/RC-3222/test-task-7688732.git
 ```
 ...or by any other available means.
 
-2. Open it in your code editor.
+2. Open it in your code editor (or a terminal).
 3. Run `npm install` to install all the dependencies.
 4. Start the dev server by running `npm run dev` and then you should be able to see the app in your browser at `localhost:9000`
 
