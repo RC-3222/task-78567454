@@ -1,15 +1,14 @@
 # Test Task
 
 ## [Task](https://drive.google.com/file/d/1BK2W8VEwzz0lg1_eyy294QCO5tpdJ8Hm/view?usp=sharing)
-
-## [Deployment](gfghfh)
+## [Deployment](https://rc-3222.github.io/built-test-task-7688732/)
 
 ## How to Use:
 
 1. Clone this repo by running the script below:
 
 ```
-***
+git clone https://github.com/RC-3222/test-task-7688732.git
 ```
 ...or by any other available means.
 
