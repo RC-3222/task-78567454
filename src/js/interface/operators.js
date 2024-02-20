@@ -10,9 +10,9 @@ import {
   Pow2Command,
   Pow3Command,
   OneOfXCommand,
-  OneOfXPowCommand,
-  OneOfXPow2Command,
-  OneOfXPow3Command,
+  Pow1OfYCommand,
+  Pow1Of2Command,
+  Pow1Of3Command,
   Pow10naXCommand,
   FactorialCommand,
 } from '../model/operations'
@@ -33,17 +33,16 @@ const commands = {
   '10^x': Pow10naXCommand,
 
   '1/x': OneOfXCommand,
-  '1/x^2': OneOfXPow2Command,
-  '1/x^3': OneOfXPow3Command,
-  '1/x^y': OneOfXPowCommand,
+
+  'x^1/2': Pow1Of2Command,
+  'x^1/3': Pow1Of3Command,
+  'x^1/y': Pow1OfYCommand,
 
   'x!': FactorialCommand,
 }
 
 function operationsSwitch(calculator) {
   const outputBeforeOperation = output.value
-
-  //console.log(calculator);
 
   const NeededCommand = commands[calculator.currentOperator]
 
@@ -73,7 +72,7 @@ function handleDoubleOperatorClick(clickedOperator, calculator) {
 
 function handleSingleOperatorClick(clickedOperator, calculator) {
   const NeededCommand = commands[clickedOperator]
-  if (!NeededCommand) return console.log('fuk single')
+  if (!NeededCommand) return
   new NeededCommand(calculator).execute()
 }
 
@@ -109,16 +108,7 @@ export function initOperators(calculator) {
         }
         case '%': {
           new PercentCommand(calculator).execute()
-          //break
         }
-        /*
-        default: {
-          const NeededCommand = commands[calculator.currentOperator]
-          if (NeededCommand) {
-            new NeededCommand(calculator).execute()
-          }
-        }
-        */
       }
   })
 }

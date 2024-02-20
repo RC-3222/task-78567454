@@ -17,5 +17,7 @@ export class Calculator {
     this.maxOutputLength = maxOutputLength
 
     this.equalCounter = equalCounter
+
+    this.history = []
   }
 }

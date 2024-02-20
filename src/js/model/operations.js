@@ -9,6 +9,7 @@ export class Command {
   }
 
   execute() {}
+  undo() {}
 }
 
 export class AddCommand extends Command {
@@ -59,28 +60,28 @@ export class OneOfXCommand extends Command {
   }
 }
 
-export class OneOfXPowCommand extends Command {
+export class Pow1OfYCommand extends Command {
   execute() {
     if (!numberValidation(output.value)) return
     output.value = transformInt(
       this.calculator.equalCounter === 0
-        ? 1 / Number(this.calculator.currentValue) ** Number(output.value)
-        : 1 / Number(output.value) ** Number(this.calculator.currentValue)
+        ? Number(this.calculator.currentValue) ** (1 / Number(output.value))
+        : Number(output.value) ** (1 / Number(this.calculator.currentValue))
     )
   }
 }
 
-export class OneOfXPow2Command extends Command {
+export class Pow1Of2Command extends Command {
   execute() {
     if (!numberValidation(output.value)) return
-    output.value = transformInt(1 / Number(output.value) ** 2)
+    output.value = transformInt(Number(output.value) ** (1 / 2))
   }
 }
 
-export class OneOfXPow3Command extends Command {
+export class Pow1Of3Command extends Command {
   execute() {
     if (!numberValidation(output.value)) return
-    output.value = transformInt(1 / Number(output.value) ** 3)
+    output.value = transformInt(Number(output.value) ** (1 / 3))
   }
 }
 
@@ -133,15 +134,21 @@ export class FactorialCommand extends Command {
 export class ClearCommand extends Command {
   constructor(calculator) {
     super(calculator)
-    this.previousValue = calculator.currentValue
-    this.previousOperator = calculator.currentOperator
-    this.previousNewNumber = output.value
+    this.prevValue = calculator.currentValue
+    this.prevOperator = calculator.currentOperator
+    this.prevOutputValue = output.value
   }
 
   execute() {
     output.value = 0
     this.calculator.currentOperator = ''
     this.calculator.currentValue = 0
+  }
+
+  undo() {
+    output.value = this.prevOutputValue
+    this.calculator.currentOperator = this.prevOperator
+    this.calculator.currentValue = this.prevValue
   }
 }
 
