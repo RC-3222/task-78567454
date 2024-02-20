@@ -20,6 +20,70 @@ export class AddCommand extends Command {
   }
 }
 
+export class PowCommand extends Command {
+  execute() {
+    if (!numberValidation(this.calculator.currentValue, output.value)) return
+    output.value = transformInt(
+      this.calculator.equalCounter === 0
+        ? Number(this.calculator.currentValue) ** Number(output.value)
+        : Number(output.value) ** Number(this.calculator.currentValue)
+    )
+  }
+}
+
+export class Pow2Command extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    output.value = transformInt(Number(output.value) ** 2)
+  }
+}
+
+export class Pow3Command extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    output.value = transformInt(Number(output.value) ** 3)
+  }
+}
+
+export class Pow10naXCommand extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    output.value = transformInt(10 ** Number(output.value))
+  }
+}
+
+export class OneOfXCommand extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    output.value = transformInt(1 / Number(output.value))
+  }
+}
+
+export class OneOfXPowCommand extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    output.value = transformInt(
+      this.calculator.equalCounter === 0
+        ? 1 / Number(this.calculator.currentValue) ** Number(output.value)
+        : 1 / Number(output.value) ** Number(this.calculator.currentValue)
+    )
+  }
+}
+
+export class OneOfXPow2Command extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    output.value = transformInt(1 / Number(output.value) ** 2)
+  }
+}
+
+export class OneOfXPow3Command extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    output.value = transformInt(1 / Number(output.value) ** 3)
+  }
+}
+
 export class SubtractCommand extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentValue, output.value)) return
@@ -49,9 +113,20 @@ export class DivideCommand extends Command {
       output.value = transformInt(
         this.calculator.equalCounter === 0
           ? Number(this.calculator.currentValue) / Number(output.value)
-          : Number(output.value) / Number(calculator.currentValue)
+          : Number(output.value) / Number(this.calculator.currentValue)
       )
     }
+  }
+}
+
+export class FactorialCommand extends Command {
+  execute() {
+    if (!numberValidation(output.value)) return
+    let res = 1
+    for (let i = 1; i <= Number(output.value); i++) {
+      res *= i
+    }
+    output.value = transformInt(res)
   }
 }
 

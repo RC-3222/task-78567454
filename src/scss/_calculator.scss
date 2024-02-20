@@ -1,6 +1,6 @@
 .calculator {
 	position: relative;
-	width: min(30rem, 100%);
+	width: min(60rem, 100%);
 	height: min(40rem, 100%);
 	margin: 0 auto;
 	box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
@@ -42,16 +42,14 @@
         
         display: grid;
         grid-template-rows: repeat(5, 1fr);
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(10, 1fr);
     }
 
     * {
         transition: all 0.25s;
     }
 
-    &__key,
-    &__key.key--operator.key--sign,
-    &__key.key--operator.key--percent {
+    &__key {
         display: flex;
         position: relative;
         align-items: center;
@@ -70,7 +68,7 @@
     }
 
     
-    &__key.key--operator {
+    &__key.calculator__key--operator {
         background-color: var(--op-clr--generic);
         color: var(--text-clr--alt);
 
@@ -80,8 +78,7 @@
     }
 
     .key--zero {
-        grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: span 2;
     }
 
     
