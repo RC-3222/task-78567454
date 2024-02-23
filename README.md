@@ -20,6 +20,7 @@ git clone https://github.com/RC-3222/task-78567454.git
 ## Additional Scripts
 
 - `npm run build` builds the app for production and puts the results to `dist` folder
+- `npm run test` to run unit tests for math operations
 
 ## App Structure
 

@@ -192,8 +192,6 @@ export class DivideCommand extends Command {
   }
 }
 
-//math.sqrt(2*math.pi*n) * (n/math.e)**n
-
 export class FactorialCommand extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
