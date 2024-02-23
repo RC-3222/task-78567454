@@ -17,11 +17,15 @@
 	--key-clr:#245A7A;
 	--key-clr--highlight:#0969A2;
 
+	--number-clr:#326380;
+	--number-clr--highlight:#0C7AB9;
+
 	--op-clr--generic:#F5F5F5;
 	--op-clr--generic--highlight:#E5E5E5;
 
-	--op-clr--equal:#3f92d2;
+	--op-clr--equal:#3F92D2;
 	--op-clr--equal--highlight:#0969A2;
+
 }
 
 body {
@@ -36,4 +40,11 @@ body {
 	overflow: hidden;
 
 	padding: min(3px, 1%);
+}
+
+sup {
+    font-size: 0.5em;
+
+    position: relative;
+    bottom: 0.625em;
 }

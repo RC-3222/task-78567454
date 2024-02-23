@@ -1,7 +1,7 @@
 .theme-switch {
     position: absolute;
-    top: min(42px, 7%);
-    right: 42px;
+    top: clamp(1.5rem, 6vh, 3rem);
+    right: clamp(1.5rem, 6vw, 3rem);
 
     &__label {
         background-color: #111111;
@@ -48,9 +48,9 @@
         width: 18px;
     }
 
-    @media (max-height:720px) and (max-width:690px) {
+    @media (max-height:42rem) and (max-width:42rem) {
         right: unset;
-        left: 42px;
+        left: clamp(1.5rem, 6vw, 3rem);
     }
 }
 
@@ -67,6 +67,9 @@ body.switched__theme {
 
     --key-clr: #fafafa;
     --key-clr--highlight: #dadada;
+
+	--number-clr:#f2f2f2;
+	--number-clr--highlight:#d2d2d2;
 
     --op-clr--generic: #64a7da;
     --op-clr--generic--highlight: #5392c2;

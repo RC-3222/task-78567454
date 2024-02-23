@@ -1,14 +1,17 @@
 export class Calculator {
   constructor(
-    currentOperator,
-    currentValue,
-    operatorActive,
-    newNumber,
-    maxOutputLength,
-    equalCounter
+    currentOutput,
+    currentOperator = '',
+    currentRemValue = 0,
+    operatorActive = false,
+    newNumber = true,
+    maxOutputLength = 14,
+    equalCounter = 0
   ) {
     this.currentOperator = currentOperator
-    this.currentValue = currentValue
+
+    this.currentRemValue = currentRemValue
+    this.currentOutput = currentOutput
 
     this.operatorActive = operatorActive
 
@@ -18,6 +21,17 @@ export class Calculator {
 
     this.equalCounter = equalCounter
 
+    this.memValue = null
+
     this.history = []
+  }
+
+  executeCommand(command) {
+    command?.execute()
+    this.history.push(command)
+  }
+
+  undoCommand() {
+    this.history.pop()?.undo()
   }
 }

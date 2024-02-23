@@ -1,11 +1,15 @@
 import '../scss/index.scss'
-import { Calculator } from './model/calculator'
 
-import { initOperators } from './interface/operators'
-import { initNumbers } from './interface/numbers'
-import { initThemeSwitcher } from './interface/switch-theme'
+import {
+  initOperators,
+  initNumbers,
+  initThemeSwitcher,
+  getOutput,
+} from './interface'
 
-const calculator = new Calculator('', 0, false, true, 14, 0)
+import { Calculator } from './model'
+
+const calculator = new Calculator(getOutput())
 
 initNumbers(calculator)
 initOperators(calculator)

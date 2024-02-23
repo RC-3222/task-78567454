@@ -13,13 +13,13 @@ import {
   Pow1OfYCommand,
   Pow1Of2Command,
   Pow1Of3Command,
-  Pow10naXCommand,
+  Pow10OfXCommand,
   FactorialCommand,
-} from '../model/operations'
-
-import { getOutput } from './output'
-
-const output = getOutput()
+  MemRemCommand,
+  MemClearCommand,
+  MemPlusCommand,
+  MemMinusCommand,
+} from '../model'
 
 const commands = {
   '+': AddCommand,
@@ -30,7 +30,7 @@ const commands = {
   'x^2': Pow2Command,
   'x^3': Pow3Command,
   'x^y': PowCommand,
-  '10^x': Pow10naXCommand,
+  '10^x': Pow10OfXCommand,
 
   '1/x': OneOfXCommand,
 
@@ -39,25 +39,33 @@ const commands = {
   'x^1/y': Pow1OfYCommand,
 
   'x!': FactorialCommand,
+
+  mc: MemClearCommand,
+  mr: MemRemCommand,
+  'm+': MemPlusCommand,
+  'm-': MemMinusCommand,
+
+  '+-': SwitchSignCommand,
+  clear: ClearCommand,
 }
 
 function operationsSwitch(calculator) {
-  const outputBeforeOperation = output.value
+  const outputBeforeOperation = calculator.currentOutput.value
 
   const NeededCommand = commands[calculator.currentOperator]
 
   if (!NeededCommand) return
 
-  new NeededCommand(calculator).execute()
+  calculator.executeCommand(new NeededCommand(calculator))
 
   if (calculator.equalCounter === 0) {
-    calculator.currentValue = outputBeforeOperation
+    calculator.currentRemValue = outputBeforeOperation
   }
 }
 
 function handleDoubleOperatorClick(clickedOperator, calculator) {
   if (calculator.operatorActive === true) {
-    calculator.currentValue = output.value
+    calculator.currentRemValue = calculator.currentOutput.value
     calculator.currentOperator = clickedOperator
     return
   }
@@ -65,7 +73,7 @@ function handleDoubleOperatorClick(clickedOperator, calculator) {
     operationsSwitch(calculator)
   }
   calculator.operatorActive = true
-  calculator.currentValue = output.value
+  calculator.currentRemValue = calculator.currentOutput.value
   calculator.currentOperator = clickedOperator
   calculator.newNumber = true
 }
@@ -73,7 +81,8 @@ function handleDoubleOperatorClick(clickedOperator, calculator) {
 function handleSingleOperatorClick(clickedOperator, calculator) {
   const NeededCommand = commands[clickedOperator]
   if (!NeededCommand) return
-  new NeededCommand(calculator).execute()
+
+  calculator.executeCommand(new NeededCommand(calculator))
 }
 
 export function initOperators(calculator) {
@@ -81,10 +90,10 @@ export function initOperators(calculator) {
 
   calculatorKeyboard.addEventListener('click', (ev) => {
     if (ev.target.classList.contains('key--operator--double-value')) {
-      handleDoubleOperatorClick(ev.target.value, calculator)
+      handleDoubleOperatorClick(ev.target.id, calculator)
       calculator.equalCounter = 0
     } else if (ev.target.classList.contains('key--operator--single-value')) {
-      handleSingleOperatorClick(ev.target.value, calculator)
+      handleSingleOperatorClick(ev.target.id, calculator)
       calculator.newNumber = true
       calculator.equalCounter = 0
     } else
@@ -96,18 +105,8 @@ export function initOperators(calculator) {
           calculator.equalCounter += 1
           break
         }
-        case 'clear': {
-          new ClearCommand(calculator).execute()
-          calculator.equalCounter = 0
-          break
-        }
-        case '+-': {
-          new SwitchSignCommand(calculator).execute()
-          calculator.equalCounter = 0
-          break
-        }
         case '%': {
-          new PercentCommand(calculator).execute()
+          calculator.executeCommand(new PercentCommand(calculator))
         }
       }
   })

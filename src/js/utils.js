@@ -17,7 +17,7 @@ export function transformInt(number) {
 
 export function numberValidation(...args) {
   for (const element of args) {
-    if (isNaN(element)) return false
+    if (Number.isNaN(+element)) return false
   }
   return true
 }
