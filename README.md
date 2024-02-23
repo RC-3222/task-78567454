@@ -1,14 +1,14 @@
-# Test Task
+# Task №78567454
 
-## [Task](https://drive.google.com/file/d/1BK2W8VEwzz0lg1_eyy294QCO5tpdJ8Hm/view?usp=sharing)
-## [Deployment](https://rc-3222.github.io/built-test-task-7688732/)
+## [Task](https://drive.google.com/file/d/15jVnBPXaZrjs99KOUxp4TGq6Inau6xq_/view)
+## [Deployment](https://rc-3222.github.io/task-78567454--dist/)
 
 ## How to Use:
 
 1. Clone this repo by running the script below:
 
 ```
-git clone https://github.com/RC-3222/test-task-7688732.git
+git clone https://github.com/RC-3222/task-78567454.git
 ```
 ...or by any other available means.
 
