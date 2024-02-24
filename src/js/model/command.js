@@ -6,7 +6,7 @@ export class Command {
   execute() {
     throw new Error("Method 'execute()' is not implemented for this command.")
   }
-  undo() {
+  /*undo() {
     throw new Error(`Method 'undo()' is not implemented for this command.`)
-  }
+  }*/
 }

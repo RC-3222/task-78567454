@@ -77,9 +77,9 @@ export class Pow1Of2Command extends Command {
       Number(this.calculator.currentOutput.value) ** (1 / 2)
     )
   }
-  undo() {
+  /*undo() {
     Number(this.calculator.currentOutput.value) ** 2
-  }
+  }*/
 }
 
 export class Pow1Of3Command extends Command {
@@ -89,9 +89,9 @@ export class Pow1Of3Command extends Command {
       Number(this.calculator.currentOutput.value) ** (1 / 3)
     )
   }
-  undo() {
+  /*undo() {
     Number(this.calculator.currentOutput.value) ** 3
-  }
+  }*/
 }
 
 export class AddCommand extends Command {
@@ -108,12 +108,12 @@ export class AddCommand extends Command {
         Number(this.calculator.currentOutput.value)
     )
   }
-  undo() {
+  /*undo() {
     this.calculator.currentOutput.value = transformInt(
       Number(this.calculator.currentOutput.value) -
         Number(this.calculator.currentRemValue)
     )
-  }
+  }*/
 }
 
 export class SubtractCommand extends Command {
@@ -133,12 +133,12 @@ export class SubtractCommand extends Command {
             Number(this.calculator.currentRemValue)
     )
   }
-  undo() {
+  /*undo() {
     this.calculator.currentOutput.value = transformInt(
       Number(this.calculator.currentOutput.value) +
         Number(this.calculator.currentRemValue)
     )
-  }
+  }*/
 }
 
 export class MultiplyCommand extends Command {
@@ -155,12 +155,12 @@ export class MultiplyCommand extends Command {
         Number(this.calculator.currentOutput.value)
     )
   }
-  undo() {
+  /*undo() {
     this.calculator.currentOutput.value = transformInt(
       Number(this.calculator.currentOutput.value) /
         Number(this.calculator.currentRemValue)
     )
-  }
+  }*/
 }
 
 export class DivideCommand extends Command {
@@ -184,12 +184,12 @@ export class DivideCommand extends Command {
             Number(this.calculator.currentRemValue)
     )
   }
-  undo() {
+  /*undo() {
     this.calculator.currentOutput.value = transformInt(
       Number(this.calculator.currentOutput.value) *
         Number(this.calculator.currentRemValue)
     )
-  }
+  }*/
 }
 
 export class FactorialCommand extends Command {
@@ -212,12 +212,12 @@ export class FactorialCommand extends Command {
 }
 
 export class ClearCommand extends Command {
-  constructor(calculator) {
+  /*constructor(calculator) {
     super(calculator)
     this.prevValue = calculator.currentRemValue
     this.prevOperator = calculator.currentOperator
     this.prevOutputValue = this.calculator.currentOutput.value
-  }
+  }*/
 
   execute() {
     this.calculator.currentOutput.value = 0
@@ -225,11 +225,11 @@ export class ClearCommand extends Command {
     this.calculator.currentRemValue = 0
   }
 
-  undo() {
+  /*undo() {
     this.calculator.currentOutput.value = this.prevOutputValue
     this.calculator.currentOperator = this.prevOperator
     this.calculator.currentRemValue = this.prevValue
-  }
+  }*/
 }
 
 export class SwitchSignCommand extends Command {

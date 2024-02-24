@@ -25,7 +25,7 @@ export class PressNumCommand extends Command {
       this.calculator.currentOutput.value += this.numToAppend
     }
   }
-  undo() {
+  /*undo() {
     this.calculator.currentOutput.value = this.prevOutputValue
-  }
+  }*/
 }

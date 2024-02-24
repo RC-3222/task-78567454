@@ -23,15 +23,15 @@ export class Calculator {
 
     this.memValue = null
 
-    this.history = []
+    //this.history = []
   }
 
   executeCommand(command) {
     command?.execute()
-    this.history.push(command)
+    //this.history.push(command)
   }
 
-  undoCommand() {
+  /*undoCommand() {
     this.history.pop()?.undo()
-  }
+  }*/
 }
