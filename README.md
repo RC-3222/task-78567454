@@ -1,6 +1,6 @@
 # Task №78567454
 
-## [Task](https://drive.google.com/file/d/15jVnBPXaZrjs99KOUxp4TGq6Inau6xq_/view)
+## [Task](https://drive.google.com/file/d/15jVnBPXaZrjs99KOUxp4TGq6Inau6xq_/view?usp=share_link)
 ## [Deployment](https://rc-3222.github.io/task-78567454--dist/)
 
 ## How to Use:
@@ -20,7 +20,7 @@ git clone https://github.com/RC-3222/task-78567454.git
 ## Additional Scripts
 
 - `npm run build` builds the app for production and puts the results to `dist` folder
-- `npm run test` to run unit tests for math operations
+- `npm run test` runs unit tests for math operations
 
 ## App Structure
 
@@ -33,8 +33,7 @@ git clone https://github.com/RC-3222/task-78567454.git
  ┃ ┗ 📜index.scss                   # Main styling file which acts as an entry point
  ┣ 📂js                             
  ┃ ┣ 📂interface                 
- ┃ ┃ ┣ 📜operators.js               # Contains initialization logic for operators on calculator's keypad. 
- ┃ ┃ ┣ 📜numbers.js                 # Same as with the file above, but this time for numbers. 
+ ┃ ┃ ┣ 📜keypad.js                  # Contains UI logic for operators and numbers on calculator's keypad. 
  ┃ ┃ ┣ 📜switch-theme.js            # Contains logic for switching themes. 
  ┃ ┃ ┣ 📜output.js                  # Contains output getter.
  ┃ ┃ ┗ 📜index.js                   # An index file to simplify imports.
