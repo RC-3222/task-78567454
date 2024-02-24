@@ -19,7 +19,14 @@ import {
   MemClearCommand,
   MemPlusCommand,
   MemMinusCommand,
+  PressNumCommand,
 } from '../model'
+
+function handleNumberClick(clickedNumber, calculator) {
+  calculator.executeCommand(PressNumCommand, clickedNumber)
+  calculator.newNumber = false
+  calculator.operatorActive = false
+}
 
 const commands = {
   '+': AddCommand,
@@ -46,6 +53,7 @@ const commands = {
   'm-': MemMinusCommand,
 
   '+-': SwitchSignCommand,
+  '%': PercentCommand,
   clear: ClearCommand,
 }
 
@@ -56,7 +64,7 @@ function operationsSwitch(calculator) {
 
   if (!NeededCommand) return
 
-  calculator.executeCommand(new NeededCommand(calculator))
+  calculator.executeCommand(NeededCommand)
 
   if (calculator.equalCounter === 0) {
     calculator.currentRemValue = outputBeforeOperation
@@ -82,14 +90,16 @@ function handleSingleOperatorClick(clickedOperator, calculator) {
   const NeededCommand = commands[clickedOperator]
   if (!NeededCommand) return
 
-  calculator.executeCommand(new NeededCommand(calculator))
+  calculator.executeCommand(NeededCommand)
 }
 
-export function initOperators(calculator) {
+export function initKeypad(calculator) {
   const calculatorKeyboard = document.querySelector('.calculator__keypad')
 
   calculatorKeyboard.addEventListener('click', (ev) => {
-    if (ev.target.classList.contains('key--operator--double-value')) {
+    if (ev.target.classList.contains('key--number')) {
+      handleNumberClick(ev.target.id, calculator)
+    } else if (ev.target.classList.contains('key--operator--double-value')) {
       handleDoubleOperatorClick(ev.target.id, calculator)
       calculator.equalCounter = 0
     } else if (ev.target.classList.contains('key--operator--single-value')) {
@@ -105,9 +115,9 @@ export function initOperators(calculator) {
           calculator.equalCounter += 1
           break
         }
-        case '%': {
-          calculator.executeCommand(new PercentCommand(calculator))
-        }
+        /*case 'undo': {
+                  calculator.undoCommand()
+                }*/
       }
   })
 }

@@ -4,7 +4,7 @@ export class PressNumCommand extends Command {
   constructor(calculator, numToAppend) {
     super(calculator)
     this.numToAppend = numToAppend
-    this.prevOutputValue = this.calculator.currentOutput.value
+    //this.prevOutputValue = this.calculator.currentOutput.value
   }
   execute() {
     if (this.numToAppend.trim() === '.') {

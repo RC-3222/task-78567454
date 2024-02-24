@@ -26,7 +26,8 @@ export class Calculator {
     //this.history = []
   }
 
-  executeCommand(command) {
+  executeCommand(Command, ...args) {
+    const command = new Command(this, ...args)
     command?.execute()
     //this.history.push(command)
   }

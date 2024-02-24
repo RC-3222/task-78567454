@@ -1,4 +1,3 @@
 export * from './output'
-export * from './operators'
-export * from './numbers'
+export * from './keypad'
 export * from './switch-theme'
