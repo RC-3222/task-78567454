@@ -11,12 +11,14 @@ export class PowCommand extends Command {
       )
     )
       return
-    this.calculator.currentOutput.value = transformInt(
-      this.calculator.equalCounter === 0
-        ? Number(this.calculator.currentRemValue) **
-            Number(this.calculator.currentOutput.value)
-        : Number(this.calculator.currentOutput.value) **
-            Number(this.calculator.currentRemValue)
+    this.calculator.tryUpdateOutput(
+      transformInt(
+        this.calculator.equalCounter === 0
+          ? Number(this.calculator.currentRemValue) **
+              Number(this.calculator.currentOutput.value)
+          : Number(this.calculator.currentOutput.value) **
+              Number(this.calculator.currentRemValue)
+      )
     )
   }
 }
@@ -24,8 +26,8 @@ export class PowCommand extends Command {
 export class Pow2Command extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      Number(this.calculator.currentOutput.value) ** 2
+    this.calculator.tryUpdateOutput(
+      transformInt(Number(this.calculator.currentOutput.value) ** 2)
     )
   }
 }
@@ -33,8 +35,8 @@ export class Pow2Command extends Command {
 export class Pow3Command extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      Number(this.calculator.currentOutput.value) ** 3
+    this.calculator.tryUpdateOutput(
+      transformInt(Number(this.calculator.currentOutput.value) ** 3)
     )
   }
 }
@@ -42,8 +44,8 @@ export class Pow3Command extends Command {
 export class Pow10OfXCommand extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      10 ** Number(this.calculator.currentOutput.value)
+    this.calculator.tryUpdateOutput(
+      transformInt(10 ** Number(this.calculator.currentOutput.value))
     )
   }
 }
@@ -51,8 +53,8 @@ export class Pow10OfXCommand extends Command {
 export class OneOfXCommand extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      1 / Number(this.calculator.currentOutput.value)
+    this.calculator.tryUpdateOutput(
+      transformInt(1 / Number(this.calculator.currentOutput.value))
     )
   }
 }
@@ -60,12 +62,15 @@ export class OneOfXCommand extends Command {
 export class Pow1OfYCommand extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      this.calculator.equalCounter === 0
-        ? Number(this.calculator.currentRemValue) **
-            (1 / Number(this.calculator.currentOutput.value))
-        : Number(this.calculator.currentOutput.value) **
-            (1 / Number(this.calculator.currentRemValue))
+
+    this.calculator.tryUpdateOutput(
+      transformInt(
+        this.calculator.equalCounter === 0
+          ? Number(this.calculator.currentRemValue) **
+              (1 / Number(this.calculator.currentOutput.value))
+          : Number(this.calculator.currentOutput.value) **
+              (1 / Number(this.calculator.currentRemValue))
+      )
     )
   }
 }
@@ -73,8 +78,8 @@ export class Pow1OfYCommand extends Command {
 export class Pow1Of2Command extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      Number(this.calculator.currentOutput.value) ** (1 / 2)
+    this.calculator.tryUpdateOutput(
+      transformInt(Number(this.calculator.currentOutput.value) ** (1 / 2))
     )
   }
   /*undo() {
@@ -85,8 +90,8 @@ export class Pow1Of2Command extends Command {
 export class Pow1Of3Command extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      Number(this.calculator.currentOutput.value) ** (1 / 3)
+    this.calculator.tryUpdateOutput(
+      transformInt(Number(this.calculator.currentOutput.value) ** (1 / 3))
     )
   }
   /*undo() {
@@ -103,9 +108,11 @@ export class AddCommand extends Command {
       )
     )
       return
-    this.calculator.currentOutput.value = transformInt(
-      Number(this.calculator.currentRemValue) +
-        Number(this.calculator.currentOutput.value)
+    this.calculator.tryUpdateOutput(
+      transformInt(
+        Number(this.calculator.currentRemValue) +
+          Number(this.calculator.currentOutput.value)
+      )
     )
   }
   /*undo() {
@@ -125,12 +132,14 @@ export class SubtractCommand extends Command {
       )
     )
       return
-    this.calculator.currentOutput.value = transformInt(
-      this.calculator.equalCounter === 0
-        ? Number(this.calculator.currentRemValue) -
-            Number(this.calculator.currentOutput.value)
-        : Number(this.calculator.currentOutput.value) -
-            Number(this.calculator.currentRemValue)
+    this.calculator.tryUpdateOutput(
+      transformInt(
+        this.calculator.equalCounter === 0
+          ? Number(this.calculator.currentRemValue) -
+              Number(this.calculator.currentOutput.value)
+          : Number(this.calculator.currentOutput.value) -
+              Number(this.calculator.currentRemValue)
+      )
     )
   }
   /*undo() {
@@ -150,9 +159,11 @@ export class MultiplyCommand extends Command {
       )
     )
       return
-    this.calculator.currentOutput.value = transformInt(
-      Number(this.calculator.currentRemValue) *
-        Number(this.calculator.currentOutput.value)
+    this.calculator.tryUpdateOutput(
+      transformInt(
+        Number(this.calculator.currentRemValue) *
+          Number(this.calculator.currentOutput.value)
+      )
     )
   }
   /*undo() {
@@ -176,12 +187,14 @@ export class DivideCommand extends Command {
       this.calculator.currentOutput.value = 'Error'
       return
     }
-    this.calculator.currentOutput.value = transformInt(
-      this.calculator.equalCounter === 0
-        ? Number(this.calculator.currentRemValue) /
-            Number(this.calculator.currentOutput.value)
-        : Number(this.calculator.currentOutput.value) /
-            Number(this.calculator.currentRemValue)
+    this.calculator.tryUpdateOutput(
+      transformInt(
+        this.calculator.equalCounter === 0
+          ? Number(this.calculator.currentRemValue) /
+              Number(this.calculator.currentOutput.value)
+          : Number(this.calculator.currentOutput.value) /
+              Number(this.calculator.currentRemValue)
+      )
     )
   }
   /*undo() {
@@ -202,9 +215,13 @@ export class FactorialCommand extends Command {
     }
 
     let res = 1
-    const num = Number.parseInt(this.calculator.currentOutput.value)
-    for (let i = 1; i <= num; i++) {
+    for (let i = 1; i <= +this.calculator.currentOutput.value; i++) {
       res *= i
+      if (res >= Number.MAX_VALUE) {
+        // regular windows (and android) calculator does something like that too, so why not?
+        this.calculator.currentOutput.value = 'Error (overflow)'
+        return
+      }
     }
 
     this.calculator.currentOutput.value = transformInt(res)
@@ -235,8 +252,8 @@ export class ClearCommand extends Command {
 export class SwitchSignCommand extends Command {
   execute() {
     if (!numberValidation(this.calculator.currentOutput.value)) return
-    this.calculator.currentOutput.value = transformInt(
-      this.calculator.currentOutput.value * -1
+    this.calculator.tryUpdateOutput(
+      transformInt(+this.calculator.currentOutput.value * -1)
     )
   }
 }
@@ -248,14 +265,16 @@ export class PercentCommand extends Command {
       !['+', '-'].includes(this.calculator.currentOperator) ||
       this.calculator.operatorActive === true
     ) {
-      this.calculator.currentOutput.value = transformInt(
-        this.calculator.currentOutput.value / 100
+      this.calculator.tryUpdateOutput(
+        transformInt(this.calculator.currentOutput.value / 100)
       )
     } else {
-      this.calculator.currentOutput.value = transformInt(
-        (Number(this.calculator.currentRemValue) *
-          Number(this.calculator.currentOutput.value)) /
-          100
+      this.calculator.tryUpdateOutput(
+        transformInt(
+          (Number(this.calculator.currentRemValue) *
+            Number(this.calculator.currentOutput.value)) /
+            100
+        )
       )
     }
   }
@@ -263,8 +282,8 @@ export class PercentCommand extends Command {
 
 export class MemRemCommand extends Command {
   execute() {
-    if (this.calculator.memValue == null) return false
-    this.calculator.currentOutput.value = transformInt(this.calculator.memValue)
+    if (this.calculator.memValue == null) return
+    this.calculator.tryUpdateOutput(transformInt(this.calculator.memValue))
   }
 }
 export class MemPlusCommand extends Command {
@@ -272,8 +291,10 @@ export class MemPlusCommand extends Command {
     if (!numberValidation(this.calculator.currentOutput.value)) return
 
     if (!this.calculator.memValue) this.calculator.memValue = 0
-    this.calculator.memValue = transformInt(
-      this.calculator.memValue + Number(this.calculator.currentOutput.value)
+    this.calculator.tryUpdateMemoryValue(
+      transformInt(
+        this.calculator.memValue + Number(this.calculator.currentOutput.value)
+      )
     )
   }
 }
@@ -283,8 +304,10 @@ export class MemMinusCommand extends Command {
     if (!numberValidation(this.calculator.currentOutput.value)) return
 
     if (this.calculator.memValue == null) this.calculator.memValue = 0
-    this.calculator.memValue = transformInt(
-      this.calculator.memValue - Number(this.calculator.currentOutput.value)
+    this.calculator.tryUpdateMemoryValue(
+      transformInt(
+        this.calculator.memValue - Number(this.calculator.currentOutput.value)
+      )
     )
   }
 }
