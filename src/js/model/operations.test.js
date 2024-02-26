@@ -52,6 +52,13 @@ describe('Math Operations Tests', () => {
         calculator.executeCommand(Pow10OfXCommand)
         expect(calculator.currentOutput.value).toBe(100)
       })
+      test('Pow10OfXCommand result for some really large numbers (produced by triple call of this command) should be "Error (Overflow)"', () => {
+        calculator.currentOutput.value = 10
+        calculator.executeCommand(Pow10OfXCommand)
+        calculator.executeCommand(Pow10OfXCommand)
+        calculator.executeCommand(Pow10OfXCommand)
+        expect(calculator.currentOutput.value).toBe('Error (Overflow)')
+      })
     })
 
     describe('double-input tests', () => {
@@ -138,6 +145,13 @@ describe('Math Operations Tests', () => {
         calculator.currentOutput.value = -1
         calculator.executeCommand(FactorialCommand)
         expect(calculator.currentOutput.value).toBe('Error')
+      })
+      test('FactorialCommand result for some really large numbers (produced by triple call of this command) should be "Error (Overflow)"', () => {
+        calculator.currentOutput.value = 5
+        calculator.executeCommand(FactorialCommand)
+        calculator.executeCommand(FactorialCommand)
+        calculator.executeCommand(FactorialCommand)
+        expect(calculator.currentOutput.value).toBe('Error (Overflow)')
       })
       test('PercentCommand result for 3 should be 0.03', () => {
         calculator.currentOutput.value = 3

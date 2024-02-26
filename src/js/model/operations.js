@@ -219,7 +219,7 @@ export class FactorialCommand extends Command {
       res *= i
       if (res >= Number.MAX_VALUE) {
         // regular windows (and android) calculator does something like that too, so why not?
-        this.calculator.currentOutput.value = 'Error (overflow)'
+        this.calculator.currentOutput.value = 'Error (Overflow)'
         return
       }
     }
