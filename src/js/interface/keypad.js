@@ -105,7 +105,7 @@ export function initKeypad(calculator) {
     } else if (ev.target.classList.contains('key--operator--single-value')) {
       handleSingleOperatorClick(ev.target.id, calculator)
       calculator.newNumber = true
-      calculator.equalCounter = 0
+      //calculator.equalCounter = 0
     } else
       switch (ev.target.id) {
         case '=': {
