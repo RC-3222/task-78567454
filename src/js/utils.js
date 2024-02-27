@@ -1,4 +1,4 @@
-export function transformInt(number) {
+export function transformNumber(number) {
   if (
     number <= -1e9 ||
     number >= 1e9 ||
@@ -15,7 +15,7 @@ export function transformInt(number) {
   return parseFloat(rounded.toString().replace(/(\.\d*?)0+$/, '$1'))
 }
 
-export function numberValidation(...args) {
+export function isValidNumber(...args) {
   for (const element of args) {
     if (Number.isNaN(+element)) return false
   }

@@ -1,5 +1,4 @@
 .calculator {
-	position: relative;
 	width: min(32rem, 100%);
 	height: min(34rem, 100%);
 	margin: 0 auto;
@@ -11,7 +10,6 @@
 	flex-direction: column;
 
     &__output {
-        position: relative;
         height: 16%;
         width: 100%;
         padding: 0 1.25rem;
@@ -33,8 +31,6 @@
     }
 
     &__keypad {
-        position: inherit;
-    
         background-color: var(--key-clr);
     
         width: 100%;
@@ -51,7 +47,6 @@
 
     &__key {
         display: flex;
-        position: relative;
         align-items: center;
         justify-content: center;
         width: 100%;
