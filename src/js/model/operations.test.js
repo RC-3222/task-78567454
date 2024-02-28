@@ -22,6 +22,8 @@ import {
 
 import { Calculator } from '.'
 
+import { Errors } from '../constants'
+
 describe('Math Operations Tests', () => {
   const calculator = new Calculator({ value: 0 })
 
@@ -32,32 +34,47 @@ describe('Math Operations Tests', () => {
         calculator.executeCommand(Pow2Command)
         expect(calculator.currentOutput.value).toBe(4)
       })
+      test('Pow2Command result for -2 should be 4', () => {
+        calculator.currentOutput.value = -2
+        calculator.executeCommand(Pow2Command)
+        expect(calculator.currentOutput.value).toBe(4)
+      })
       test('Pow1of2Command result for 4 should be 2', () => {
         calculator.currentOutput.value = 4
         calculator.executeCommand(Pow1Of2Command)
         expect(calculator.currentOutput.value).toBe(2)
+      })
+      test(`Pow1of2Command result for -4 should be "${Errors.Generic}"`, () => {
+        calculator.currentOutput.value = -4
+        calculator.executeCommand(Pow1Of2Command)
+        expect(calculator.currentOutput.value).toBe(Errors.Generic)
       })
       test('Pow3Command result for 2 should be 8', () => {
         calculator.currentOutput.value = 2
         calculator.executeCommand(Pow3Command)
         expect(calculator.currentOutput.value).toBe(8)
       })
-      test('Pow3Command result for 8 should be 2', () => {
+      test('Pow1Of3Command result for 8 should be 2', () => {
         calculator.currentOutput.value = 8
         calculator.executeCommand(Pow1Of3Command)
         expect(calculator.currentOutput.value).toBe(2)
+      })
+      test('Pow1Of3Command result for -8 should be -2', () => {
+        calculator.currentOutput.value = -8
+        calculator.executeCommand(Pow1Of3Command)
+        expect(calculator.currentOutput.value).toBe(-2)
       })
       test('Pow10OfXCommand result for 2 should be 100', () => {
         calculator.currentOutput.value = 2
         calculator.executeCommand(Pow10OfXCommand)
         expect(calculator.currentOutput.value).toBe(100)
       })
-      test('Pow10OfXCommand result for some really large numbers (produced by triple call of this command) should be "Error (Overflow)"', () => {
+      test(`Pow10OfXCommand result for some really large numbers (produced by triple call of this command) should be "${Errors.Overflow}"`, () => {
         calculator.currentOutput.value = 10
         calculator.executeCommand(Pow10OfXCommand)
         calculator.executeCommand(Pow10OfXCommand)
         calculator.executeCommand(Pow10OfXCommand)
-        expect(calculator.currentOutput.value).toBe('Error (Overflow)')
+        expect(calculator.currentOutput.value).toBe(Errors.Overflow)
       })
     })
 
@@ -68,11 +85,23 @@ describe('Math Operations Tests', () => {
         calculator.executeCommand(PowCommand)
         expect(calculator.currentOutput.value).toBe(16)
       })
+      test(`PowCommand result for 4 and 0.5 should be "${Errors.Generic}"`, () => {
+        calculator.currentRemValue = -4
+        calculator.currentOutput.value = 0.5
+        calculator.executeCommand(PowCommand)
+        expect(calculator.currentOutput.value).toBe(Errors.Generic)
+      })
       test('Pow1OfYCommand result for 16 and 4 should be 2', () => {
         calculator.currentRemValue = 16
         calculator.currentOutput.value = 4
         calculator.executeCommand(Pow1OfYCommand)
         expect(calculator.currentOutput.value).toBe(2)
+      })
+      test(`Pow1OfYCommand result for -16 and 4 should be "${Errors.Generic}"`, () => {
+        calculator.currentRemValue = -16
+        calculator.currentOutput.value = 4
+        calculator.executeCommand(Pow1OfYCommand)
+        expect(calculator.currentOutput.value).toBe(Errors.Generic)
       })
     })
   })
@@ -111,11 +140,11 @@ describe('Math Operations Tests', () => {
         calculator.executeCommand(DivideCommand)
         expect(calculator.currentOutput.value).toBe(0.5)
       })
-      test('DivideCommand result for 4 and 0 should be "Error"', () => {
+      test(`DivideCommand result for 4 and 0 should be "${Errors.Generic}"`, () => {
         calculator.currentRemValue = 4
         calculator.currentOutput.value = 0
         calculator.executeCommand(DivideCommand)
-        expect(calculator.currentOutput.value).toBe('Error')
+        expect(calculator.currentOutput.value).toBe(Errors.Generic)
       })
     })
   })
@@ -141,17 +170,17 @@ describe('Math Operations Tests', () => {
         calculator.executeCommand(FactorialCommand)
         expect(calculator.currentOutput.value).toBe(1)
       })
-      test('FactorialCommand result for -1 should be "Error"', () => {
+      test(`FactorialCommand result for -1 should be "${Errors.Generic}"`, () => {
         calculator.currentOutput.value = -1
         calculator.executeCommand(FactorialCommand)
-        expect(calculator.currentOutput.value).toBe('Error')
+        expect(calculator.currentOutput.value).toBe(Errors.Generic)
       })
-      test('FactorialCommand result for some really large numbers (produced by triple call of this command) should be "Error (Overflow)"', () => {
+      test(`FactorialCommand result for some really large numbers (produced by triple call of this command) should be "${Errors.Overflow}"`, () => {
         calculator.currentOutput.value = 5
         calculator.executeCommand(FactorialCommand)
         calculator.executeCommand(FactorialCommand)
         calculator.executeCommand(FactorialCommand)
-        expect(calculator.currentOutput.value).toBe('Error (Overflow)')
+        expect(calculator.currentOutput.value).toBe(Errors.Overflow)
       })
       test('PercentCommand result for 3 should be 0.03', () => {
         calculator.currentOutput.value = 3

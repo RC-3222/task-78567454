@@ -1,7 +1,9 @@
+import { Errors } from '../constants'
+
 export class Calculator {
   constructor(
     currentOutput,
-    currentOperator = '',
+    currentOperator = null,
     currentRemValue = 0,
     operatorActive = false,
     newNumber = true,
@@ -22,34 +24,37 @@ export class Calculator {
     this.equalCounter = equalCounter
 
     this.memValue = null
-
-    //this.history = []
   }
 
   executeCommand(Command, ...args) {
     const command = new Command(this, ...args)
     command?.execute()
-    //this.history.push(command)
   }
 
-  /*undoCommand() {
-    this.history.pop()?.undo()
-  }*/
-
   tryUpdateOutput(value) {
+    if (isNaN(value)) {
+      this.currentOutput.value = Errors.Generic
+      return
+    }
+
     this.currentOutput.value =
       (value > 0 && (value > Number.MAX_VALUE || value < Number.MIN_VALUE)) ||
       (value < 0 && (value > -Number.MIN_VALUE || value < -Number.MAX_VALUE))
-        ? 'Error (Overflow)'
+        ? Errors.Overflow
         : value
   }
 
   tryUpdateMemoryValue(value) {
+    if (isNaN(value)) {
+      return
+    }
+
     if (
       (value > 0 && (value > Number.MAX_VALUE || value < Number.MIN_VALUE)) ||
       (value < 0 && (value > -Number.MIN_VALUE || value < -Number.MAX_VALUE))
     )
       return
+
     this.memValue = value
   }
 }

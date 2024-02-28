@@ -22,45 +22,47 @@ import {
   PressNumCommand,
 } from '../model'
 
+import { Commands } from '../constants'
+
 function handleNumberClick(clickedNumber, calculator) {
   calculator.executeCommand(PressNumCommand, clickedNumber)
   calculator.newNumber = false
   calculator.operatorActive = false
 }
 
-const commands = {
-  '+': AddCommand,
-  '-': SubtractCommand,
-  '*': MultiplyCommand,
-  '/': DivideCommand,
+const commandVariants = {
+  [Commands.Add]: AddCommand,
+  [Commands.Subtract]: SubtractCommand,
+  [Commands.Multiply]: MultiplyCommand,
+  [Commands.Divide]: DivideCommand,
 
-  'x^2': Pow2Command,
-  'x^3': Pow3Command,
-  'x^y': PowCommand,
-  '10^x': Pow10OfXCommand,
+  [Commands.Pow2]: Pow2Command,
+  [Commands.Pow3]: Pow3Command,
+  [Commands.PowY]: PowCommand,
+  [Commands.Pow10OfX]: Pow10OfXCommand,
 
-  '1/x': OneOfXCommand,
+  [Commands.OneOfX]: OneOfXCommand,
 
-  'x^1/2': Pow1Of2Command,
-  'x^1/3': Pow1Of3Command,
-  'x^1/y': Pow1OfYCommand,
+  [Commands.Pow1Of2]: Pow1Of2Command,
+  [Commands.Pow1Of3]: Pow1Of3Command,
+  [Commands.Pow1OfY]: Pow1OfYCommand,
 
-  'x!': FactorialCommand,
+  [Commands.Factorial]: FactorialCommand,
 
-  mc: MemClearCommand,
-  mr: MemRemCommand,
-  'm+': MemPlusCommand,
-  'm-': MemMinusCommand,
+  [Commands.MemClear]: MemClearCommand,
+  [Commands.MemRem]: MemRemCommand,
+  [Commands.MemPlus]: MemPlusCommand,
+  [Commands.MemMinus]: MemMinusCommand,
 
-  '+-': SwitchSignCommand,
-  '%': PercentCommand,
-  clear: ClearCommand,
+  [Commands.SwitchSign]: SwitchSignCommand,
+  [Commands.Percent]: PercentCommand,
+  [Commands.Clear]: ClearCommand,
 }
 
 function operationsSwitch(calculator) {
   const outputBeforeOperation = calculator.currentOutput.value
 
-  const NeededCommand = commands[calculator.currentOperator]
+  const NeededCommand = commandVariants[calculator.currentOperator]
 
   if (!NeededCommand) return
 
@@ -77,9 +79,11 @@ function handleDoubleOperatorClick(clickedOperator, calculator) {
     calculator.currentOperator = clickedOperator
     return
   }
-  if (calculator.currentOperator !== '') {
+
+  if (calculator.currentOperator !== null) {
     operationsSwitch(calculator)
   }
+
   calculator.operatorActive = true
   calculator.currentRemValue = calculator.currentOutput.value
   calculator.currentOperator = clickedOperator
@@ -87,7 +91,8 @@ function handleDoubleOperatorClick(clickedOperator, calculator) {
 }
 
 function handleSingleOperatorClick(clickedOperator, calculator) {
-  const NeededCommand = commands[clickedOperator]
+  const NeededCommand = commandVariants[clickedOperator]
+
   if (!NeededCommand) return
 
   calculator.executeCommand(NeededCommand)
@@ -107,16 +112,13 @@ export function initKeypad(calculator) {
       calculator.newNumber = true
     } else
       switch (ev.target.id) {
-        case '=': {
+        case Commands.Equal: {
           operationsSwitch(calculator)
           calculator.operatorActive = true
           calculator.newNumber = true
           calculator.equalCounter += 1
           break
         }
-        /*case 'undo': {
-          calculator.undoCommand()
-        }*/
       }
   })
 }

@@ -7,7 +7,9 @@ export function transformNumber(number) {
     const formatted = number.toExponential(5)
     return formatted.replace(/(\.\d*?)0+e/, '$1e').replace(/\.e/, 'e')
   }
+
   const rounded = number.toFixed(8)
+
   if (Number.isInteger(parseFloat(rounded))) {
     return parseFloat(rounded)
   }
@@ -19,5 +21,6 @@ export function isValidNumber(...args) {
   for (const element of args) {
     if (Number.isNaN(+element)) return false
   }
+
   return true
 }

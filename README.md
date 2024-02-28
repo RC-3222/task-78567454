@@ -44,6 +44,7 @@ git clone https://github.com/RC-3222/task-78567454.git
  ┃ ┃ ┣ 📜operations.js              # Contains a set of commands for various mathematical operations.
  ┃ ┃ ┗ 📜index.js                   # An index file to simplify imports.
  ┃ ┣ 📜index.js                     # Main JS file which acts as an entry point.
+ ┃ ┣ 📜constants.js                 # Contains various constant values (mostly strings) used across the app.
  ┃ ┗ 📜utils.js                     # Contains utility funtions for number validation and output formatting.
  ┗ 📜index.html                     # HTML template utilised by webpack.
 ```
